@@ -19,6 +19,8 @@ public interface VisionServiceClient {
 
     public AnalysisResult analyzeImage(String url, String[] visualFeatures, String[] details) throws VisionServiceException;
 
+    public AnalysisResult analyzeImage(String url, String[] visualFeatures) throws VisionServiceException;
+
     public AnalysisResult analyzeImage(InputStream stream, String[] visualFeatures, String[] details) throws VisionServiceException, IOException;
 
     public AnalysisInDomainResult analyzeImageInDomain(String url, Model model) throws VisionServiceException;
