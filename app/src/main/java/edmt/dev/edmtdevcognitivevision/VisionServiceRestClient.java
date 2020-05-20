@@ -76,17 +76,17 @@ public class VisionServiceRestClient implements VisionServiceClient  {
     }
 
     @Override
-    public AnalysisResult analyzeImage(String url, String[] visualFeatures) throws VisionServiceException {
+    public AnalysisResult analyzeImage(InputStream stream, String[] visualFeatures) throws VisionServiceException, IOException {
         Map<String, Object> params = new HashMap<>();
         AppendParams(params, "visualFeatures", visualFeatures);
-
         String path = apiRoot + "/analyze";
         String uri = WebServiceRequest.getUrl(path, params);
 
         params.clear();
-        params.put("url", url);
+        byte[] data = Utils.toByteArray(stream);
+        params.put("data", data);
 
-        String json = (String) this.restCall.request(uri, "POST", params, null, false);
+        String json = (String) this.restCall.request(uri, "POST", params, "application/octet-stream", false);
 
         return this.gson.fromJson(json, AnalysisResult.class);
     }

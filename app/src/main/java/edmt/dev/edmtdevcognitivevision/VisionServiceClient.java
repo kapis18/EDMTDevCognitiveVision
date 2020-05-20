@@ -19,7 +19,7 @@ public interface VisionServiceClient {
 
     public AnalysisResult analyzeImage(String url, String[] visualFeatures, String[] details) throws VisionServiceException;
 
-    public AnalysisResult analyzeImage(String url, String[] visualFeatures) throws VisionServiceException;
+    public AnalysisResult analyzeImage(InputStream stream, String[] visualFeatures) throws VisionServiceException, IOException;
 
     public AnalysisResult analyzeImage(InputStream stream, String[] visualFeatures, String[] details) throws VisionServiceException, IOException;
 
